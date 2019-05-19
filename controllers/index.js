@@ -1,5 +1,4 @@
 const User = require('../models/Users')
-const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const multer  = require('multer');
 const upload = multer()
@@ -21,8 +20,8 @@ module.exports = function (mongoose) {
 
             const {username,password,email,enrollType} = req.body
 
-            bcrypt.hash(password,10).then((hash)=> {
-                const user = new User({username,password:hash,email,enrollType})
+     
+                const user = new User({username,password,email,enrollType})
                 const promise =user.save()
     
                 promise.then((data)=> {
@@ -39,7 +38,8 @@ module.exports = function (mongoose) {
             const {username,password} =  req.body
 
             User.findOne({
-                username
+                username,
+                password
             },(err,user)=> {
                 if(err)
                     throw err
@@ -48,15 +48,10 @@ module.exports = function (mongoose) {
                         status: false,
                         message:'Authentication failed,user not found'
                     })
-                }else{
+                }
 
-                    bcrypt.compare(password,user.password).then((result)=> {
-                        if(!result){
-                            res.json({
-                                status: false,
-                                message:'Authentication failed,wrong password'
-                            })
-                        }else{
+                   
+                    else{
                             const payload = {
                                 user
                             }
@@ -68,8 +63,7 @@ module.exports = function (mongoose) {
                                 token
                             })
                         }
-                    })
-                }
+                   
             })
         },
         userImageUpload:function(req,res,next){
