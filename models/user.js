@@ -7,6 +7,7 @@ const userSchema = mongoose.Schema({
     password: {type: String, default: ''},
     enrollType: { type: String,default: ''},
     userImage: {type: String, default:'default.png'},
+    
 
 })
 

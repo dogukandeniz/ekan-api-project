@@ -18,10 +18,10 @@ module.exports = function (mongoose) {
         },
         registerUser: function (req, res, next) {
 
-            const { username, password, email, enrollType } = req.body
+            const { username, password, email, enrollType,il,İlce,kanGrubu,hospital_name } = req.body
 
 
-            const user = new User({ username, password, email, enrollType })
+            const user = new User({ username, password, email, enrollType ,il,İlce,kanGrubu,hospital_name})
             const promise = user.save()
 
             promise.then((data) => {

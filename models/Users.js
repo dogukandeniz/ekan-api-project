@@ -8,7 +8,12 @@ const UsersSchema = new Schema({
     password: {type: String, default: ''},
     enrollType: { type: String,default: ''},
     userImage: {type: String, default:'default.png'},
-  
+    il: {type: String, default:''},
+    ilce: {type: String, default:''},
+    kanGrubu: {type: String, default:''},
+    hospital_name: {type: String,  default:''},
+
+    
 
 })
 
