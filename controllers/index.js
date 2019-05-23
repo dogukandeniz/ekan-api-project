@@ -59,7 +59,9 @@ module.exports = function (mongoose) {
 
                     res.json({
                         status: true,
-                        token
+                        token,
+                        user
+
                     })
 
                 }
