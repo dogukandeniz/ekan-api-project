@@ -13,6 +13,7 @@ module.exports = function (mongoose) {
 
             router.post('/user/register', this.registerUser);
             router.post('/user/authenticate', this.loginUser);
+            router.get('/user/getUser', this.getUserDonor);
             router.post('/api/user/imageUpload', this.userImageUpload);
 
         },
@@ -32,7 +33,22 @@ module.exports = function (mongoose) {
       
 
     },
+    getUserDonor: function (req, res, next) {
 
+      
+
+     
+        const promise =User.find({"enrollType":'donör' })
+
+        promise.then((data) => {
+            res.json(data)
+          
+        }).catch((err) => {
+            res.json({ status: false, error: err })
+        })
+  
+
+},
         loginUser: function(req, res, next) {
 
             const { username, password } = req.body
