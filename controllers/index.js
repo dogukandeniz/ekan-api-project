@@ -40,7 +40,7 @@ module.exports = function (mongoose) {
         
         const promise =  User.updateOne(
             {"_id": ObjectId(req.params._id) },
-            {$push: { talepler: {'username': req.body.username, 'kanGrubu': req.body.kanGrubu}}},
+            {$push: { talepler: {username: req.body.username, kanGrubu: req.body.kanGrubu}}},
             {new : true});
             promise.then((data) => {
                 if (data)
