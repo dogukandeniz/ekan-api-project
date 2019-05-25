@@ -12,7 +12,13 @@ const UsersSchema = new Schema({
     ilce: {type: String, default:''},
     kanGrubu: {type: String, default:''},
     hospital_name: {type: String,  default:''},
-
+    talepler:  [{
+        username: {type: String, required: true},
+        kanGrubu: {type: String, required: true}
+    }
+    
+    ],
+ 
     
 
 })

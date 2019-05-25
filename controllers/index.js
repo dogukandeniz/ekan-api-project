@@ -2,7 +2,7 @@ const User = require('../models/Users')
 const jwt = require('jsonwebtoken')
 const multer = require('multer');
 const upload = multer()
-
+var ObjectId = require('mongodb').ObjectID
 let configTop
 module.exports = function (mongoose) {
 
@@ -14,6 +14,7 @@ module.exports = function (mongoose) {
             router.post('/user/register', this.registerUser);
             router.post('/user/authenticate', this.loginUser);
             router.get('/user/getUser', this.getUserDonor);
+            router.put('/user/setTalepforDonor', this.setTalepForDonor);
             router.post('/api/user/imageUpload', this.userImageUpload);
 
         },
@@ -33,6 +34,26 @@ module.exports = function (mongoose) {
       
 
     },
+    setTalepForDonor: function (req, res, next) {
+
+    
+        
+        const promise =  User.updateOne(
+            {"_id": ObjectId(req.params._id) },
+            {$push: { talepler: {'username': req.body.username, 'kanGrubu': req.body.kanGrubu}}},
+            {new : true});
+            promise.then((data) => {
+                if (data)
+                  
+                res.json(data)
+            }).catch((err) => {
+                res.json(err)
+            })
+
+       
+  
+
+},
     getUserDonor: function (req, res, next) {
 
       
