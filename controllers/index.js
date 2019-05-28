@@ -52,7 +52,7 @@ module.exports = function (mongoose,async) {
                        
                 },
                 function(data,cb){
-                           
+                        
                     if(data==0){
                     
                         const promise = User.updateOne(
@@ -61,20 +61,20 @@ module.exports = function (mongoose,async) {
                             { new: true });
                             
                         promise.then(data=> {
-                            res.json({status:true,data:data})
-                            cb(err,true)
+                          
+                          
                         })
-
                        
+                        cb(null,true)
                     }
                     else{
-                        res.json({status: false,error:'error'})
-                        cb(err,false)
+                      
+                        cb(null,false)
                     }
                         
                 },
                 function(data,cb){
-                           
+                           console.log(data)
                     if(data){
                     
                         const promise = User.updateOne(
