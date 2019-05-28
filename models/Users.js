@@ -18,6 +18,12 @@ const UsersSchema = new Schema({
     }
     
     ],
+    istekler:  [{
+        username: {type: String, required: true},
+        kanGrubu: {type: String, required: true}
+    }
+    
+    ],
  
     
 

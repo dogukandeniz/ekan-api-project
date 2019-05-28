@@ -62,13 +62,35 @@ module.exports = function (mongoose,async) {
                             
                         promise.then(data=> {
                             res.json({status:true,data:data})
+                            cb(err,true)
+                        })
+
+                       
+                    }
+                    else{
+                        res.json({status: false,error:'error'})
+                        cb(err,false)
+                    }
+                        
+                },
+                function(data,cb){
+                           
+                    if(data){
+                    
+                        const promise = User.updateOne(
+                            { "_id": ObjectId(req.body.istek_id) },
+                            { $push: { istekler: { 'username': req.body.istek_username, 'kanGrubu': req.body.istek_kanGrubu } } },
+                            { new: true });
+                            
+                        promise.then(data=> {
+                            res.json({status:true,data:data})
                         })
                     }
                     else{
                         res.json({status: false,error:'error'})
                     }
                         
-                }
+                },
 
             ])
 
