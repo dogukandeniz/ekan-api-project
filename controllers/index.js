@@ -16,7 +16,7 @@ module.exports = function (mongoose,async) {
             router.get('/user/getUser', this.getUserDonor);
             router.put('/user/setTalepforDonor', this.setTalepForDonor);
             router.post('/api/user/imageUpload', this.userImageUpload);
-            router.post('/api/user/updateUser', this.userUpdate);
+            router.put('/user/updateUser', this.userUpdate);
             
 
         },
