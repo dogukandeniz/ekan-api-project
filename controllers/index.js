@@ -16,6 +16,8 @@ module.exports = function (mongoose,async) {
             router.get('/user/getUser', this.getUserDonor);
             router.put('/user/setTalepforDonor', this.setTalepForDonor);
             router.post('/api/user/imageUpload', this.userImageUpload);
+            router.post('/api/user/updateUser', this.userUpdate);
+            
 
         },
         registerUser: function (req, res, next) {
@@ -32,6 +34,27 @@ module.exports = function (mongoose,async) {
                 res.json({ status: false, error: err })
             })
 
+
+        },
+        userUpdate: function (req, res, next) {
+
+          
+
+
+            const promise = User.findByIdAndUpdate(
+                req.body._id,
+                req.body,
+                {
+                    new: true
+                });
+
+            promise.then((data) => {
+                if (!data)
+                    next({ message: 'The user was not found' })
+                res.json(data)
+            }).catch((err) => {
+                res.json(err)
+            })
 
         },
         setTalepForDonor: function (req, res, next) {
